@@ -1,7 +1,8 @@
-import react from 'react';
+import react, { useCallback } from 'react';
 import './home-screen.css';
 import { BrowserRouter } from 'react-router-dom';
 import DefaultScreen from '../../compoenents/DefaultScreen';
+import Button from '../../compoenents/Button';
 
 function HomeScreen() {
   const [clickCounter, setClickCounter] = react.useState<number>(0);
@@ -21,23 +22,17 @@ function HomeScreen() {
     return clickCounter;
   };
 
+  const resetCount = useCallback(() => {
+    setClickCounter(0);
+  }, [clickCounter]);
+
   return (
     <BrowserRouter>
       <DefaultScreen flexDirection='column'>
-        <button>안녕하세요</button>
-        <button>안녕하세요</button>
-        <button>안녕하세요</button>
-        <button>안녕하세요</button>
-        <button
-          onClick={onClickPlusButton}
-          style={{
-            marginBottom: '100px',
-            padding: '10px',
-            color: 'red'
-          }}
-        >
+        <button onClick={resetCount}>안녕하세요</button>
+        <Button variant='primary' onClick={onClickPlusButton}>
           님아 이거 눌러보셈 지림 ㅋ
-        </button>
+        </Button>
         <h1>{isCountEnd()}</h1>
       </DefaultScreen>
     </BrowserRouter>
