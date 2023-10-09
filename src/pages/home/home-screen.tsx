@@ -1,10 +1,13 @@
 import react, { useCallback } from 'react';
 import './home-screen.css';
-import { BrowserRouter } from 'react-router-dom';
 import DefaultScreen from '../../compoenents/DefaultScreen';
 import Button from '../../compoenents/Button';
+import { useNavigate } from 'react-router-dom';
 
 function HomeScreen() {
+  // local
+  const navigate = useNavigate();
+
   const [clickCounter, setClickCounter] = react.useState<number>(0);
 
   const onClickPlusButton = () => {
@@ -19,23 +22,36 @@ function HomeScreen() {
     if (clickCounter >= 10) {
       return '좆까셈 ㅋ';
     }
-    return clickCounter;
+    return `${clickCounter}회`;
   };
 
   const resetCount = useCallback(() => {
     setClickCounter(0);
   }, [clickCounter]);
 
+  const goToGuitar = () => {
+    navigate('/guitar');
+  };
+
   return (
-    <BrowserRouter>
-      <DefaultScreen flexDirection='column'>
-        <button onClick={resetCount}>안녕하세요</button>
-        <Button variant='primary' onClick={onClickPlusButton}>
-          님아 이거 눌러보셈 지림 ㅋ
-        </Button>
-        <h1>{isCountEnd()}</h1>
-      </DefaultScreen>
-    </BrowserRouter>
+    <DefaultScreen flexDirection='column'>
+      <button onClick={resetCount}>안녕하셈요? ㅋ</button>
+      <Button variant='secondary' onClick={goToGuitar}>
+        기타 페이지로 이동함요 ㅋ
+      </Button>
+      <Button variant='primary' onClick={onClickPlusButton}>
+        님아 이거 눌러보셈 지림 ㅋ
+      </Button>
+      <h1>{isCountEnd()}</h1>
+      <footer
+        style={{
+          position: 'static',
+          bottom: '0'
+        }}
+      >
+        위 버튼은 styled-components로 구성되었습니다노 ㅋ
+      </footer>
+    </DefaultScreen>
   );
 }
 

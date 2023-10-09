@@ -31,6 +31,7 @@
     "react/react-in-jsx-scope": "off",
     "spaced-comment": "error",
     "quotes": ["error", "single"],
-    "no-duplicate-imports": "error"
+    "no-duplicate-imports": "error",
+    "no-unused-vars": "warn"
   }
 }
