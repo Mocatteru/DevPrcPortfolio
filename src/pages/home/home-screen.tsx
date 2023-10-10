@@ -1,14 +1,28 @@
-import react, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import './home-screen.css';
 import DefaultScreen from '../../compoenents/DefaultScreen';
-import Button from '../../compoenents/Button';
 import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText
+} from '@mui/material';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 function HomeScreen() {
   // local
   const navigate = useNavigate();
 
-  const [clickCounter, setClickCounter] = react.useState<number>(0);
+  const [clickCounter, setClickCounter] = useState<number>(0);
+
+  const [isOpenSider, setOpenSider] = useState<boolean>(false);
 
   const onClickPlusButton = () => {
     console.log('기모띠');
@@ -33,15 +47,65 @@ function HomeScreen() {
     navigate('/guitar');
   };
 
+  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpenSider(open);
+  };
+
+  // component
+  const Sider = () => (
+    <Box
+      sx={{
+        width: 280
+      }}
+      role='presentation'
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={goToGuitar}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={'MATASABURO COVER'} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
+
   return (
     <DefaultScreen flexDirection='column'>
       <button onClick={resetCount}>안녕하셈요? ㅋ</button>
-      <Button variant='secondary' onClick={goToGuitar}>
+      <React.Fragment>
+        <Button
+          variant='contained'
+          sx={{
+            margin: '42px'
+          }}
+          onClick={toggleDrawer(true)}
+        >
+          Sider Test Button
+        </Button>
+        <Drawer anchor='left' open={isOpenSider} onClose={toggleDrawer(false)}>
+          <Sider />
+        </Drawer>
+      </React.Fragment>
+      <Button variant='contained' color='info' onClick={goToGuitar}>
         기타 페이지로 이동함요 ㅋ
       </Button>
-      <Button variant='primary' onClick={onClickPlusButton}>
+      <Button variant='contained' color='primary' onClick={onClickPlusButton}>
         님아 이거 눌러보셈 지림 ㅋ
       </Button>
+
       <h1>{isCountEnd()}</h1>
       <footer
         style={{
