@@ -1,3 +1,4 @@
+//Legacy
 import styled from 'styled-components';
 
 interface DefaultScreenProps {

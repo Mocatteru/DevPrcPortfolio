@@ -23,7 +23,8 @@
     "styled-components": "^6.0.8",
     "typescript": "*",
     "web-vitals": "^2.1.4",
-    "yarn": "^1.22.22"
+    "yarn": "^1.22.22",
+    "zustand": "^4.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
