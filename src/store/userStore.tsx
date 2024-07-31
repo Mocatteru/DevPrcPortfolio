@@ -7,7 +7,7 @@ interface StoreState {
 }
 
 const useUserStore = create<StoreState>(set => ({
-  userID: Date.now(),
+  userID: 167,
   userName: '이종현',
   editUserName: (newName: string) =>
     set(state => ({

@@ -20,7 +20,7 @@ function UserInfoScreen() {
 
   const onClickEditUserNameButton = useCallback(() => {
     userStore.editUserName(userNameInput);
-  }, [userNameInput, userStore.editUserName]);
+  }, [userNameInput, userStore]);
 
   return (
     <Box
