@@ -39,7 +39,7 @@ function HomeScreen() {
         backgroundColor: 'skyblue'
       }}
     >
-      <ButtonAppBar />
+      <ButtonAppBar title='홈화면' />
 
       <Box sx={{ flex: 1 }}>
         <Typography>실험1</Typography>

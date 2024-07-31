@@ -9,7 +9,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Sider } from './Sider/Sider';
 import { Drawer } from '@mui/material';
 
-export default function ButtonAppBar() {
+interface appbar {
+  title?: string;
+}
+
+export default function ButtonAppBar(props: appbar) {
   const [isOpenSider, setOpenSider] = useState<boolean>(false);
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -42,7 +46,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            News
+            {props.title}
           </Typography>
           <Button color='inherit'>Login</Button>
         </Toolbar>
