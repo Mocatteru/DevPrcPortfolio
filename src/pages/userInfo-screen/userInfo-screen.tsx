@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import ButtonAppBar from '../../compoenents/Appbar';
 import useUserStore from '../../store/userStore';
@@ -8,6 +8,10 @@ function UserInfoScreen() {
   const userStore = useUserStore();
 
   const [userNameInput, setUserNameInput] = useState<string>('');
+
+  useEffect(() => {
+    document.title = '유저 정보 및 수정';
+  }, []);
 
   // handle
   const handleUserNameTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {

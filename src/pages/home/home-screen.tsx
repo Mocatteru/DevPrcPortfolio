@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './home-screen.css';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import ButtonAppBar from '../../compoenents/Appbar';
@@ -7,6 +7,10 @@ import useUserStore from '../../store/userStore';
 function HomeScreen() {
   // local
   const userStore = useUserStore();
+
+  useEffect(() => {
+    document.title = '홈 화면';
+  }, []);
 
   return (
     <Box

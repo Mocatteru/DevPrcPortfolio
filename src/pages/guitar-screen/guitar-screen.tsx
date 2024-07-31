@@ -1,8 +1,13 @@
 import { Box } from '@mui/system';
+import { useEffect } from 'react';
 import ButtonAppBar from '../../compoenents/Appbar';
-import DefaultScreen from '../../compoenents/DefaultScreen';
 
 function GuitarScreen() {
+  // local
+  useEffect(() => {
+    document.title = '기타 솔로';
+  }, []);
+
   return (
     <Box
       sx={{
