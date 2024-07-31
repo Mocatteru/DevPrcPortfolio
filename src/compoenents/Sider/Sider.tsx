@@ -1,13 +1,4 @@
-import {
-  Box,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText
-} from '@mui/material';
-import { useState } from 'react';
+import { Box, List } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { SiderItem } from './SiderItem';
 
@@ -18,6 +9,14 @@ export const Sider = () => {
     navigate('/guitar');
   };
 
+  const goToUserInfo = () => {
+    navigate('/userinfo');
+  };
+
+  const goToHome = () => {
+    navigate('/');
+  };
+
   return (
     <Box
       sx={{
@@ -26,7 +25,9 @@ export const Sider = () => {
       role='presentation'
     >
       <List>
+        <SiderItem nav={goToHome} itemName={'홈 화면'} />
         <SiderItem nav={goToGuitar} itemName={'마타사부로 기타 COVER'} />
+        <SiderItem nav={goToUserInfo} itemName={'유저 정보 및 수정'} />
       </List>
     </Box>
   );
