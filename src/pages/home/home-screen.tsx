@@ -10,6 +10,7 @@ function HomeScreen() {
 
   useEffect(() => {
     document.title = '홈 화면';
+    userStore.fetchUserName();
   }, []);
 
   return (
