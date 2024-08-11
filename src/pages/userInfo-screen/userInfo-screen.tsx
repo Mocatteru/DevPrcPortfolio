@@ -6,11 +6,11 @@ import useUserStore from '../../store/userStore';
 function UserInfoScreen() {
   // local
   const userStore = useUserStore();
-
   const [userNameInput, setUserNameInput] = useState<string>('');
 
   useEffect(() => {
     document.title = '유저 정보 및 수정';
+    userStore.fetchUserName();
   }, []);
 
   // handle
@@ -18,8 +18,8 @@ function UserInfoScreen() {
     setUserNameInput(event.target.value);
   };
 
-  const onClickEditUserNameButton = useCallback(() => {
-    userStore.editUserName(userNameInput);
+  const onClickEditUserNameButton = useCallback(async () => {
+    userStore.updateUserName(userNameInput);
   }, [userNameInput, userStore]);
 
   return (
