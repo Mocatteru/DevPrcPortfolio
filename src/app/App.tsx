@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GuitarScreen from '../pages/guitar-screen/guitar-screen';
-import HomeScreen from '../pages/home/home-screen';
+import HomeScreen from '../pages/home-screen/home-screen';
 import UserInfoScreen from '../pages/userInfo-screen/userInfo-screen';
 import reportWebVitals from './reportWebVitals';
 
