@@ -18,8 +18,32 @@ app.get('/', (req, res) => {
 
 let userID = 167;
 let userName = '이종현';
+
+// 유저정보 GET
+app.get('/user-info', (req, res) => {
+  res.status(200).json({
+    userName: userName,
+    userID: userID,
+    message: '성공적으로 사용자 정보을 가져왔습니다.'
+  });
+  console.log('유저 정보 전송됨', userName, userID);
+});
+
+// 유저ID 변경 POST
+app.post('/update-user-id', (req, res) => {
+  const newID = parseInt(req.body.newID);
+
+  if (newID === null || NaN) {
+    return res.status(400).json({ error: '유효한 ID을 입력해주세요.' });
+  }
+
+  userID = newID;
+  console.log(`유저 ID 변경됨: ${userID}`);
+  res.json({ message: 'ID가 업데이트되었습니다.', userID: userID });
+});
+
 // 유저이름 변경 POST
-app.post('/userinfo', (req, res) => {
+app.post('/update-user-name', (req, res) => {
   const newName = req.body.newName;
 
   if (typeof newName !== 'string' || newName.trim() === '') {
@@ -29,15 +53,6 @@ app.post('/userinfo', (req, res) => {
   userName = newName;
   console.log(`유저 이름 변경됨: ${userName}`);
   res.json({ message: '이름이 업데이트되었습니다.', userName: userName });
-});
-
-// 유저이름 GET
-app.get('/userinfo', (req, res) => {
-  res.status(200).json({
-    userName: userName,
-    message: '성공적으로 사용자 이름을 가져왔습니다.'
-  });
-  console.log('유저 이름 전송됨', userName);
 });
 
 const PORT = process.env.PORT || 3000;
